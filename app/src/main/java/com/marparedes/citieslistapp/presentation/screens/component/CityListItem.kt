@@ -17,6 +17,7 @@ fun CityListItem(item: City, onItemClick: (City) -> Unit, isGray: Boolean) {
         colors = ListItemDefaults.colors(
             containerColor = if (isGray) Color.LightGray else Color.Transparent
         ),
+        supportingContent = { Text(text = "lat: ${item.coord.lat}, lon:${item.coord.lon}")},
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onItemClick(item) }

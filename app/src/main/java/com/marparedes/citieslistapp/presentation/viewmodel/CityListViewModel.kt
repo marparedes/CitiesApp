@@ -45,6 +45,8 @@ class CityListViewModel @Inject constructor(private val getCitiesUseCase: GetCit
     fun loadNextPage(isFirstLoad: Boolean = false) {
         if (_state.value.isLoading && !isFirstLoad) return
 
+        if (_state.value.query.isNotEmpty()) return
+
         val start = currentPage * pageSize
         val end = (currentPage + 1) * pageSize
 
@@ -59,17 +61,28 @@ class CityListViewModel @Inject constructor(private val getCitiesUseCase: GetCit
 
         _state.value = if (isFirstLoad) {
             _state.value.copy(
-                data = nextCities,
+                cities = nextCities,
                 isLoading = false
             )
         } else {
             _state.value.copy(
-                data = _state.value.data + nextCities,
+                cities = _state.value.cities + nextCities,
                 isLoading = false
             )
         }
 
         hasMoreData = end < allCities.size
         currentPage++
+    }
+
+    fun filterCities(query: String) {
+        _state.value = _state.value.copy(query = query)
+        val filtered = if (query.isEmpty()) {
+            allCities
+        } else {
+            allCities.filter { it.name.startsWith(query, ignoreCase = true) }
+        }
+
+        _state.value = _state.value.copy(cities = filtered)
     }
 }

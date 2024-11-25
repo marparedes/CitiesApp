@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -21,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.marparedes.citieslistapp.presentation.screens.component.CityListItem
+import com.marparedes.citieslistapp.presentation.screens.component.FilterInput
 import com.marparedes.citieslistapp.presentation.viewmodel.CityListViewModel
 
 @Composable
@@ -46,42 +48,57 @@ fun CitiesListScreen(modifier: Modifier = Modifier) {
             }
     }
 
-    if (result.isLoading && result.data.isEmpty()) {
-        Column(
-            modifier = modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(50.dp)
-            )
-        }
-    } else {
-        LazyColumn(
-            state = listState,
-            modifier = modifier.fillMaxSize()
-        ) {
-            itemsIndexed(result.data){ index, item ->
-                CityListItem(
-                    item = item,
-                    onItemClick = { city ->
-                        Toast.makeText(context, city.name, Toast.LENGTH_SHORT).show()
-                    },
-                    isGray = index % 2 == 1
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .imePadding()
+    ) {
+
+        FilterInput(viewModel = viewModel)
+
+        if (result.isLoading && result.cities.isEmpty()) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(50.dp)
                 )
             }
+        } else {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier.fillMaxSize()
+            ) {
+                itemsIndexed(
+                    items = result.cities,
+                    key = { _, item -> item.id }
+                ){ index, item ->
+                    CityListItem(
+                        item = item,
+                        onItemClick = { city ->
+                            Toast.makeText(context, city.name, Toast.LENGTH_SHORT).show()
+                        },
+                        isGray = index % 2 == 1
+                    )
+                }
 
-            if (result.isLoading && viewModel.hasMoreData) {
-               item {
-                   CircularProgressIndicator(
-                       modifier = Modifier
-                           .fillMaxWidth()
-                           .padding(16.dp)
-                           .wrapContentWidth(Alignment.CenterHorizontally)
-                   )
-               }
+                if (result.isLoading && viewModel.hasMoreData) {
+                    item {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                                .wrapContentWidth(Alignment.CenterHorizontally)
+                        )
+                    }
+                }
             }
         }
+
     }
+
+
 }
 
