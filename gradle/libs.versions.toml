@@ -11,11 +11,17 @@ composeBom = "2024.04.01"
 org-jetbrains-kotlin-android = "1.8.0"
 hilt = "2.48"
 hilt-navigation-compose = "1.2.0"
+hilt-testing = "1.0.0"
 retrofit = "2.9.0"
 gson = "2.10.1"
 navigation_compose = "2.7.4"
 okhttp = "4.11.0"
 google-maps = "4.4.1"
+mockito = "4.8.1"
+mockito-kotlin = "4.1.0"
+kotlinx-coroutines-test = "1.7.2"
+core-testing = "2.1.0"
+io-mockk = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +44,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose"}
+hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt-testing"}
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 
 # Retrofit y Gson
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -50,9 +58,18 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 # Google Maps
 maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "google-maps"}
 
+# Mockito for mocking dependencies
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito"}
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockito"}
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
+io-mockk = { group = "io.mockk", name = "mockk", version.ref = "io-mockk" }
+
+# Kotlin Coroutines Test
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test"}
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "core-testing" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
-
