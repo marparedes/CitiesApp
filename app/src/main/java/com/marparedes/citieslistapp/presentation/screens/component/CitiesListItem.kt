@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import com.marparedes.citieslistapp.domain.model.City
 
 @Composable
-fun CityListItem(item: City, onItemClick: (City) -> Unit, isGray: Boolean) {
+fun CitiesListItem(item: City, onItemClick: (City) -> Unit, isGray: Boolean) {
     ListItem(
         headlineContent = { Text(text = "${item.name}, ${item.country}") },
         colors = ListItemDefaults.colors(

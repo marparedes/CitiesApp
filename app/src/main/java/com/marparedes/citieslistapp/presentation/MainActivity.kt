@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.marparedes.citieslistapp.presentation.screens.CitiesListScreen
+import com.marparedes.citieslistapp.presentation.navigation.AppNavHost
+import androidx.navigation.compose.rememberNavController
 import com.marparedes.citieslistapp.presentation.ui.theme.CitiesListAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +20,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CitiesListAppTheme {
+                val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CitiesListScreen(
+                    AppNavHost(
+                        navController = navController,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

@@ -80,6 +80,8 @@ dependencies {
 
     // Gson independiente (opcional)
     implementation(libs.gson)
+    // Google Maps
+    implementation(libs.maps.compose)
 }
 
 kapt {

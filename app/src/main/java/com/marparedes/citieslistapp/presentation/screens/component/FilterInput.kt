@@ -12,13 +12,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.marparedes.citieslistapp.presentation.viewmodel.CityListViewModel
 
 @Composable
 fun FilterInput(
-    modifier: Modifier = Modifier,
-    viewModel: CityListViewModel
+    modifier: Modifier = Modifier
 ) {
+    val viewModel: CityListViewModel = hiltViewModel()
     var query by remember { mutableStateOf("") }
     Column(modifier = modifier) {
         // Buscador

@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CitiesListApp"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAAMM_NmIRnvwU_ria83TFUjlRu5jiVvHw" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"
