@@ -85,4 +85,8 @@ class CityListViewModel @Inject constructor(private val getCitiesUseCase: GetCit
 
         _state.value = _state.value.copy(cities = filtered)
     }
+
+    fun getCityById(id: String?): City? {
+        return allCities.find { it.id == id }
+    }
 }

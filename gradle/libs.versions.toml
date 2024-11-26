@@ -15,6 +15,7 @@ retrofit = "2.9.0"
 gson = "2.10.1"
 navigation_compose = "2.7.4"
 okhttp = "4.11.0"
+google-maps = "4.4.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,9 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 
 # Gson (independiente, si no se usa solo con Retrofit)
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+# Google Maps
+maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "google-maps"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

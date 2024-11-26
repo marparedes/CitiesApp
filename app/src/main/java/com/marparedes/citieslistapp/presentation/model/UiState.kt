@@ -6,5 +6,6 @@ data class UiState(
     var isLoading: Boolean = false,
     var error: String = "",
     var cities: List<City> = emptyList(),
-    var query: String = ""
+    var query: String = "",
+    var selectedCity: City? = null
 )
